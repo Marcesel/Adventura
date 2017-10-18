@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -33,13 +35,17 @@ import uiText.TextoveRozhrani;
  */
 public class main extends Application {
     
+    private TextArea centralText;
+    private IHra hra;
+    private TextField zadejPrikazTextArea;
+    
     @Override
     public void start(Stage primaryStage) {
-        IHra hra = new Hra();
+        hra = new Hra();
         BorderPane borderPane = new BorderPane();
         
         
-        TextArea centralText = new TextArea();
+        centralText = new TextArea();
         centralText.setText(hra.vratUvitani());
         centralText.setEditable(false);        
         borderPane.setCenter(centralText);
@@ -47,7 +53,7 @@ public class main extends Application {
         Label zadejPrikaz = new Label("zadej prikaz");
         zadejPrikaz.setFont(Font.font("Arial",FontWeight.BOLD, 14));
         
-        TextField zadejPrikazTextArea = new TextField();
+        zadejPrikazTextArea = new TextField();
         zadejPrikazTextArea.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {                
@@ -65,17 +71,28 @@ public class main extends Application {
                 }
             }
         });
+        // obrazok s mapou
+        FlowPane obrazekFlowPane = new FlowPane();
+
+        obrazekFlowPane.setPrefSize(200, 200);
+        ImageView obrazekImageView = new ImageView(new Image(main.class.getResourceAsStream("/zdroje/mapa.jpg"),500,500,false,true));
+        obrazekFlowPane.setAlignment(Pos.CENTER);
+        obrazekFlowPane.getChildren().add(obrazekImageView);
+        
         
         FlowPane dolniLista = new FlowPane();
         dolniLista.setAlignment(Pos.CENTER);
         dolniLista.getChildren().addAll(zadejPrikaz, zadejPrikazTextArea);
+        
+        borderPane.setLeft(obrazekFlowPane);
         borderPane.setBottom(dolniLista);
         
-        Scene scene = new Scene(borderPane, 600, 400);
+        Scene scene = new Scene(borderPane, 1050, 600);
         
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
+        zadejPrikazTextArea.requestFocus();
     }
 
     /**
