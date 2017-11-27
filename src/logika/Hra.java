@@ -17,14 +17,14 @@ public class Hra implements IHra {
     private SeznamPrikazu platnePrikazy;    // obsahuje seznam přípustných příkazů
     private HerniPlan herniPlan;
     private boolean konecHry = false;
-
+    private Batoh batoh;
 
     /**
      *  Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
      */
     public Hra() {
         herniPlan = new HerniPlan();
-        Batoh batoh = new Batoh();
+        batoh = new Batoh();
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazPouzi(herniPlan,batoh));
@@ -129,5 +129,8 @@ public class Hra implements IHra {
      public HerniPlan getHerniPlan(){
         return herniPlan;
      }
-    
+     public Batoh getBatoh()
+     {
+         return batoh;
+     }
 }

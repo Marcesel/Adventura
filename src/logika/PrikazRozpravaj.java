@@ -52,10 +52,11 @@ class PrikazRozpravaj implements IPrikaz
         }
         if (postava.getMeno().contains("krcmar") && (! batoh.nazvyVeciVBatohu().contains("luk")) ){
             if ( (batoh.getKapacita()-1) > batoh.getPocetVeciVBatohu() ) {
-                Vec luk = new Vec("luk","úplne obyčajný luk",true);
-                Vec sipy = new Vec("sipy","niesom si istý, či tie hroty sú dosť ostré na to aby mohli ublížiť",true);
+                Vec luk = new Vec("luk","úplne obyčajný luk",true,"luk.jpg");
+                Vec sipy = new Vec("sipy","niesom si istý, či tie hroty sú dosť ostré na to aby mohli ublížiť",true,"sipy.jpg");
                 batoh.pridaj(luk);
                 batoh.pridaj(sipy);
+                hPlan.notifyObservers();
                 return "Vyzeráš ako schopný človek, nemal by si záujem o úlohu?\n"
                     + "platím dobre .. Ak mi donesieš telo vlka ktorý terorizuje okolie získaš tento meč a knihu o tom ako bojovať\n"
                     + "Dohodneme sa?\n" + "Do batohu bol pridany: " + luk.getNazev() + ": " + luk.getPopis() + "\n"

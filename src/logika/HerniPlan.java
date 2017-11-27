@@ -1,5 +1,10 @@
 package logika;
 
+import java.util.ArrayList;
+import java.util.List;
+import utils.Observer;
+import utils.Subject;
+
 
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
@@ -11,11 +16,13 @@ package logika;
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, Marcel Češelka
  * @version   0.00.000
  */
-public class HerniPlan {
+public class HerniPlan implements Subject {
 
     private Prostor aktualniProstor;
     private boolean prehra = false;
     private boolean vyhra = false;
+    
+    private List<Observer> listObserveru = new ArrayList<Observer>();
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
@@ -27,16 +34,16 @@ public class HerniPlan {
     
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-        Prostor farma = new Prostor("farma","Farma, na ktorej si vyrastal");
-        Prostor mastal = new Prostor("mastal", "Mastal, kedysi tu bol dobytok, ako sa mi to mohlo stať ..");
-        Prostor luka = new Prostor("luka","Luka, rozsiahla lúka pri farme");
-        Prostor temny_les = new Prostor("temny_les","Temny les, v ktorom nie je skoro žiadne svetlo");
-        Prostor prekliata_pevnost = new Prostor("prekliata_pevnost","Prekliata pevnost, na svete nie je nebezpecnejsieho miesta");
-        Prostor mesto = new Prostor("mesto","Mesto, obkolesené vysokými hradbami");
-        Prostor kostol = new Prostor("kostol","Kostol, nádherný kostol plný obrazov");
-        Prostor krcma = new Prostor("krcma","Krcma, je tu plno špiny a podivný zápach");
-        Prostor smrekovy_les = new Prostor("smrekovy_les","Smrekovy les, ihličnatý les plný smrekov a borovíc");
-        Prostor vlcia_nora = new Prostor("vlcia_nora","Vĺčia nora, možno tu niečo býva");
+        Prostor farma = new Prostor("farma","Farma, na ktorej si vyrastal",300,30);
+        Prostor mastal = new Prostor("mastal", "Mastal, kedysi tu bol dobytok, ako sa mi to mohlo stať ..",450,30);
+        Prostor luka = new Prostor("luka","Luka, rozsiahla lúka pri farme",300,140);
+        Prostor temny_les = new Prostor("temny_les","Temny les, v ktorom nie je skoro žiadne svetlo",165,135);
+        Prostor prekliata_pevnost = new Prostor("prekliata_pevnost","Prekliata pevnost, na svete nie je nebezpecnejsieho miesta",30,135);
+        Prostor mesto = new Prostor("mesto","Mesto, obkolesené vysokými hradbami",300,260);
+        Prostor kostol = new Prostor("kostol","Kostol, nádherný kostol plný obrazov",440,260);
+        Prostor krcma = new Prostor("krcma","Krcma, je tu plno špiny a podivný zápach",155,260);
+        Prostor smrekovy_les = new Prostor("smrekovy_les","Smrekovy les, ihličnatý les plný smrekov a borovíc",300,365);
+        Prostor vlcia_nora = new Prostor("vlcia_nora","Vĺčia nora, možno tu niečo býva",300,490);
 
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
@@ -60,21 +67,21 @@ public class HerniPlan {
         vlcia_nora.setVychod(smrekovy_les);
 
         // vytvoříme několik věcí
-        Vec kriz = new Vec("kriz", "Drevený kresťanský kríž", true);
-        Vec strom = new Vec("strom", "Vyzerá, že by to mohol byť dub", false);
-        Vec cibula = new Vec("cibula", "Úplne obyčajná cibuľa", true);
-        Vec cesnak = new Vec("cesnak", "Cesnakové strúčiky aj s vňaťkou", true);
-        Vec mrtva_krava = new Vec("mrtva_krava", "Vidím dve rany na krku po kusnutí", false);
-        Vec slama = new Vec("slama", "Obyčajná vysušená tráva", true);
-        Vec cedula = new Vec("cedula", "Mesto - západ 10 km, Farma - východ 5 km", false);
-        Vec vyschnuty_konar = new Vec("vyschnuty_konar", "Možno sa mi na niečo bude hodiť", false);
-        Vec pavucina = new Vec("pavucina", "Muselo to pavúkovi trvať veľmi dlho", false);
-        Vec hromada_kosti = new Vec("hromada_kosti","Sú to ľudské a zvieracie kosti",false);
-        Vec metla = new Vec("metla","Niekto si po ňu pravdepodobne každú chvíľu príde",true);
-        Vec vysoky_smrek = new Vec("vysoky_smrek","Tento sa zdá byť zo všetkých najvyšší",false);
-        Vec vystrazna_cedula = new Vec("vystrazna_cedula","Dávajte si pozor na vlka!!",false);
-        Vec ovcie_kosti = new Vec("ovcie_kosti","Ten vlk musel skoliť aspoň tucet oviec",false);
-        Vec oltar = new Vec("oltar","Kamenný oltár na ktorom horia sviečky",false);
+        Vec kriz = new Vec("kriz", "Drevený kresťanský kríž", true,"kriz.jpg");
+        Vec strom = new Vec("strom", "Vyzerá, že by to mohol byť dub", false,"strom.jpg");
+        Vec cibula = new Vec("cibula", "Úplne obyčajná cibuľa", true,"cibula.jpg");
+        Vec cesnak = new Vec("cesnak", "Cesnakové strúčiky aj s vňaťkou", true,"cesnak.jpg");
+        Vec mrtva_krava = new Vec("mrtva_krava", "Vidím dve rany na krku po kusnutí", false,"mrtva_krava.jpg");
+        Vec slama = new Vec("slama", "Obyčajná vysušená tráva", true,"slama.jpg");
+        Vec cedula = new Vec("cedula", "Mesto - západ 10 km, Farma - východ 5 km", false,"cedula.jpg");
+        Vec vyschnuty_konar = new Vec("vyschnuty_konar", "Možno sa mi na niečo bude hodiť", false,"vyschnuty_konar.jpg");
+        Vec pavucina = new Vec("pavucina", "Muselo to pavúkovi trvať veľmi dlho", false,"pavucina.jpg");
+        Vec hromada_kosti = new Vec("hromada_kosti","Sú to ľudské a zvieracie kosti",false,"hromada_kosti.jpg");
+        Vec metla = new Vec("metla","Niekto si po ňu pravdepodobne každú chvíľu príde",true,"metla.jpg");
+        Vec vysoky_smrek = new Vec("vysoky_smrek","Tento sa zdá byť zo všetkých najvyšší",false,"vysoky_smrek.jpg");
+        Vec vystrazna_cedula = new Vec("vystrazna_cedula","Dávajte si pozor na vlka!!",false,"vystrazna_cedula.jpg");
+        Vec ovcie_kosti = new Vec("ovcie_kosti","Ten vlk musel skoliť aspoň tucet oviec",false,"ovcie_kosti.jpg");
+        Vec oltar = new Vec("oltar","Kamenný oltár na ktorom horia sviečky",false,"oltar.jpg");
         
         // umístíme věci do prostorů
         farma.vlozVec(kriz);
@@ -135,6 +142,7 @@ public class HerniPlan {
      */
     public void setAktualniProstor(Prostor prostor) {
        aktualniProstor = prostor;
+       notifyObservers();
     }
     // Zistí, aká je hodnota premennej vyhra
     public boolean isVyhra() {
@@ -151,6 +159,24 @@ public class HerniPlan {
     // Nastaví hodnotu premenne prehra na hodnotu z parametra    
     public void setPrehra(boolean prehra){
         this.prehra = prehra;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        listObserveru.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        listObserveru.add(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer listObserveruItem : listObserveru){
+            listObserveruItem.update();
+        }
+        
     }
     
 }

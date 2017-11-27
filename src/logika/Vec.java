@@ -17,17 +17,18 @@ public class Vec
     private String nazev;
     private String popis;
     private boolean prenositelna;
-    
+    private String obrazok;
     //== Konstruktory a tovární metody =============================================
 
     /***************************************************************************
      *  Konstruktor ....
      */
-    public Vec(String nazev, String popis, boolean prenositelna)
+    public Vec(String nazev, String popis, boolean prenositelna, String obrazok)
     {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelna = prenositelna;
+        this.obrazok = obrazok;
     }
 
     //== Nesoukromé metody (instancí i třídy) ======================================
@@ -45,5 +46,9 @@ public class Vec
 
 
     //== Soukromé metody (instancí i třídy) ========================================
+
+    public String getObrazok() {
+        return obrazok;
+    }
 
 }

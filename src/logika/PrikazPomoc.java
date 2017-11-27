@@ -33,7 +33,7 @@ class PrikazPomoc implements IPrikaz {
         }
         if (!batoh.nazvyVeciVBatohu().contains("posveteny_kriz")) {
             hlaska += "posveteny_kriz, ";
-            pomocneHlasky += "Kríž, ktorý mi vysel nad posteľou treba posvetit na oltary v kostole.\n";
+            pomocneHlasky += "Kríž, ktorý mi vysel nad posteľou treba posvetit na oltari v kostole.\n";
         }       
         if (!batoh.nazvyVeciVBatohu().contains("mec")){
             hlaska += "mec, ";

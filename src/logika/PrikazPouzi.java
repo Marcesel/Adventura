@@ -53,8 +53,9 @@ public class PrikazPouzi implements IPrikaz
         }
         // Posvetíme si kríž tým, že ho použijeme na oltár
         else if (vec.getNazev().equals("kriz") && nazov2.equals("oltar") ) {
-            Vec posveteny_kriz = new Vec("posveteny_kriz","Žiary z neho pozitívna energia.",true);
+            Vec posveteny_kriz = new Vec("posveteny_kriz","Žiary z neho pozitívna energia.",true,"posveteny_kriz.jpg");
             batoh.pridaj(posveteny_kriz);
+            hPlan.notifyObservers();
             return HLASKA_PRID_BATOH + posveteny_kriz.getNazev() + ": " + posveteny_kriz.getPopis();
         }
         /*
@@ -68,8 +69,9 @@ public class PrikazPouzi implements IPrikaz
             }
             aktualnyPriestor.odoberPostavu("vlk");
             batoh.pridaj(vec);
-            Vec mrtvy_vlk = new Vec("mrtvy_vlk","ten už nikomu neuškodí",true);
+            Vec mrtvy_vlk = new Vec("mrtvy_vlk","ten už nikomu neuškodí",true,"mrtvy_vlk.jpg");
             batoh.pridaj(mrtvy_vlk);
+            hPlan.notifyObservers();
             return  "Tvoj šíp zasiahol vlka priamo do krku .. Vlk padá na zem a je v momente mŕtvy\n"
                     + HLASKA_PRID_BATOH + mrtvy_vlk.getNazev() + ": " + mrtvy_vlk.getPopis();
         }
@@ -82,10 +84,11 @@ public class PrikazPouzi implements IPrikaz
             if( (batoh.getKapacita()-1) <= batoh.getPocetVeciVBatohu() ){
                 return "Nemám miesto v batohu, pred splnením úlohy by som si mal nejaké spraviť.";
             }
-            Vec mec = new Vec(HLASKA_MEC,"tento meč je predurčený veľkým veciam",true);                        
-            Vec kniha_o_boji = new Vec("kniha_o_boji","základom úspechu je obrana, obrana, útok",true);           
+            Vec mec = new Vec(HLASKA_MEC,"tento meč je predurčený veľkým veciam",true,"mec.jpg");                        
+            Vec kniha_o_boji = new Vec("kniha_o_boji","základom úspechu je obrana, obrana, útok",true,"kniha_o_boji.jpg");           
             batoh.pridaj(mec);
             batoh.pridaj(kniha_o_boji);
+            hPlan.notifyObservers();
             return "Dobrá práca!! Konečne sa našiel niekto schopný.\n" + "Vezmi si tento meč a knihu o boji, myslím že ti v budúcnosti pomôže\n"
                     + HLASKA_PRID_BATOH + mec.getNazev() + ": " + mec.getPopis() + "\n"
                     + HLASKA_PRID_BATOH + kniha_o_boji.getNazev() + ": " + kniha_o_boji.getPopis();
@@ -97,9 +100,10 @@ public class PrikazPouzi implements IPrikaz
             if( batoh.getKapacita() == batoh.getPocetVeciVBatohu() ){
                 return "Nemám miesto v batohu, ak chcem vytesať kolík, musím niečo zahodiť.";
             }            
-            Vec kolik = new Vec("kolik","drevený kolík, ktorý poslúži svojmu účelu",true);
+            Vec kolik = new Vec("kolik","drevený kolík, ktorý poslúži svojmu účelu",true,"kolik.jpg");
             batoh.pridaj(vec);
             batoh.pridaj(kolik);
+            hPlan.notifyObservers();
             return HLASKA_PRID_BATOH + kolik.getNazev() + ": " + kolik.getPopis();
             }
         /*
@@ -110,6 +114,7 @@ public class PrikazPouzi implements IPrikaz
                      && batoh.nazvyVeciVBatohu().contains("kniha_o_boji") && batoh.nazvyVeciVBatohu().contains("posveteny_kriz") 
                     && batoh.nazvyVeciVBatohu().contains("kolik")) { 
             hPlan.setVyhra(true);
+            hPlan.notifyObservers();
             return null;                      
             }
         /*
@@ -118,9 +123,11 @@ public class PrikazPouzi implements IPrikaz
         else if ( (vec.getNazev().equals(HLASKA_MEC) || vec.getNazev().equals("luk") ) && hPlan.getAktualniProstor().najdiPostavu(nazov2) != null
                     && nazov2.equals("drakula") ) { 
             batoh.pridaj(vec);
+            hPlan.notifyObservers();
             return "Môžem sa snažiť koľko chcem, neviem ho takto zabiť";
             }
         batoh.pridaj(vec);
+        hPlan.notifyObservers();
         return "neviem, čo mám robiť, možno by som si mal skúsiť pozrieť nápovedu";
     }
     

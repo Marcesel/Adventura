@@ -29,6 +29,8 @@ public class Prostor {
     private Map<String, Vec> veci;
     private Map<String, Postava> postavy;
     private Batoh batoh;
+    private double posLeft;
+    private double posTop;
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -38,12 +40,22 @@ public class Prostor {
      * víceslovný název bez mezer.
      * @param popis Popis prostoru.
      */
-    public Prostor(String nazev, String popis) {
+    public Prostor(String nazev, String popis,double posLeft, double posTop) {
         this.nazev = nazev;
         this.popis = popis;
         vychody = new HashSet<>();
         veci = new HashMap<>();
         postavy = new HashMap<>();
+        this.posLeft = posLeft;
+        this.posTop = posTop;
+    }
+
+    public double getPosLeft() {
+        return posLeft;
+    }
+
+    public double getPosTop() {
+        return posTop;
     }
 
     /**
@@ -136,7 +148,7 @@ public class Prostor {
      *
      * @return Popis východů - názvů sousedních prostorů
      */
-    private String popisVychodu() {
+    public String popisVychodu() {
         String vracenyText = "Vychody:";
         for (Prostor sousedni : vychody) {
             vracenyText += " " + sousedni.getNazev();
@@ -227,5 +239,9 @@ public class Prostor {
     // Vráti meno postavy v priestore
     public Postava najdiPostavu(String meno){
         return postavy.get(meno);
+    }
+    public Map<String, Vec> getZoznamVeci()
+    {
+        return veci;
     }
 }

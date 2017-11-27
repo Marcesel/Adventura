@@ -64,6 +64,11 @@ public class Batoh
     public int getPocetVeciVBatohu(){
         return zoznamVeci.size();
     }
+    
+    public Map<String, Vec> getZoznamVeci()
+    {
+        return zoznamVeci;
+    }
     //== Soukromé metody (instancí i třídy) ========================================
 
 }
