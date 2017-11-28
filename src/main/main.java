@@ -36,8 +36,8 @@ import logika.*;
 import uiText.TextoveRozhrani;
 
 /**
- *
- * @author xzenj02
+ * Hlavni trida aplikace, vykresluje interface a sklada dokopy jednotlive panely
+ * @author xzenj02, Marcel Češelka
  */
 public class Main extends Application {
 
