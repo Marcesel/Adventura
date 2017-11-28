@@ -22,6 +22,10 @@ public class Vec
 
     /***************************************************************************
      *  Konstruktor ....
+     * @param nazev Nazev veci
+     * @param popis Strucny popis veci
+     * @param prenositelna Vlastnost jestli je vec prenositelna
+     * @param obrazok Nazov suboru v ktorom je obrazok pre danu vec
      */
     public Vec(String nazev, String popis, boolean prenositelna, String obrazok)
     {
@@ -32,20 +36,38 @@ public class Vec
     }
 
     //== Nesoukromé metody (instancí i třídy) ======================================
+
+    /**
+     *
+     * @return Vrati nazev veci
+     */
     public String getNazev() {
         return nazev;
     }
     
+    /**
+     *
+     * @return Vrati popis veci
+     */
     public String getPopis() {
         return popis;
     }
     
+    /**
+     *
+     * @return Vrati vlastnost veci ci je vec prenositelna
+     */
     public boolean isPrenositelna() {
         return prenositelna;
     }
 
 
     //== Soukromé metody (instancí i třídy) ========================================
+
+    /**
+     *
+     * @return vrati nazov suboru v ktorom je obrazok pre danu vec
+     */
 
     public String getObrazok() {
         return obrazok;

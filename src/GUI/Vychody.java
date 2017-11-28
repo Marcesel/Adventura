@@ -13,18 +13,23 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javax.swing.DefaultListModel;
-import javax.swing.JPanel;
-import logika.HerniPlan;
 import logika.IHra;
 import logika.Prostor;
 import utils.Observer;
 
 
 /**
+ * Třída Vychody - třída používa návrhový vzor Observer a implementuje grafickú 
+ * správu vychodov z aktualniho prostoru.
+ * 
+ * Tato třída vytváří instanci třídy Vychody, 
+ * která inicializuje listview pro zobrazení vychodov vytvára metody, ktere
+ * s BatohGUI můžou pracovat.
  *
- * @author Marcel
+ * @author    Marcel Češelka
+ * @version   0.00.000
  */
-public class Vychody extends JPanel implements Observer{
+public class Vychody implements Observer{
 
     private IHra hra;
     private TextArea centralText;
@@ -33,7 +38,9 @@ public class Vychody extends JPanel implements Observer{
     private DefaultListModel model;  
     private Prostor prostor;
     private TextField zadejPrikazTextArea;
-    
+    /*
+    * Kontruktor tridy.
+    */    
     public Vychody(IHra hra, TextArea text,TextField field) {
         this.hra = hra;
         hra.getHerniPlan().registerObserver(this);
@@ -43,6 +50,9 @@ public class Vychody extends JPanel implements Observer{
         
         init();
     }
+    /*
+    * Zmazanie starych vychodov a nacitanie aktualnych pre aktualni prostor.
+    */
     @Override
     public void update() {
         
@@ -62,7 +72,10 @@ public class Vychody extends JPanel implements Observer{
         hra.getHerniPlan().registerObserver(this);
         update();
     }
-    
+    /*
+    * Inicializace vychodov. Vytvori novy listview a nacita vychody z aktualniho
+    * prostoru. Na kliknuti mysou na nazev prostoru muzeme do nej prejit. 
+    */
     private void init() {
         list = new ListView<>();
         data = FXCollections.observableArrayList();

@@ -22,15 +22,25 @@ import main.Main;
 import utils.Observer;
 
 /**
+ * Třída Veci - třída používa návrhový vzor Observer a implementuje grafickú
+ * spravu veci v prostoru.
+ * 
+ * Tato třída vytváří instanci třídy Veci, 
+ * která inicializuje listview pro zobrazení veci v prostoru a  vytvára metody, ktere
+ * s nimi můžou pracovat.
  *
- * @author Marcel
+ * @author    Marcel Češelka
+ * @version   0.00.000
  */
 public class Veci implements Observer{
     private IHra hra;
     ListView<Object> list;
     ObservableList<Object> data;    
     private TextArea centralText;
-     
+    
+    /*
+    * Kontruktor tridy.
+    */     
     public Veci(IHra hra, TextArea text) {
         this.hra = hra;
         hra.getHerniPlan().registerObserver(this);
@@ -52,7 +62,10 @@ public class Veci implements Observer{
         
         }
 
-
+    /*
+    * Inicializace predmetov v priestore. Vytvori novy listview a nacita veci z aktualniho
+    * prostoru. Na kliknuti mysou na nazev veci se dana vec prida do batohu. 
+    */
     private void init() {
         list = new ListView<>();
         data = FXCollections.observableArrayList();

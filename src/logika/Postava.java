@@ -21,6 +21,8 @@ public class Postava
 
     /***************************************************************************
      *  Konstruktor ....
+     * @param meno nacita instancy jmena postavy
+     * @param hlaska nacita instancy textu hlasky
      */
     public Postava(String meno, String hlaska)
     {

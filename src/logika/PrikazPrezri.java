@@ -22,6 +22,7 @@ public class PrikazPrezri implements IPrikaz
 
     /***************************************************************************
      *  Konstruktor ....
+     * @param hPlan nacita instanci aktualniho herniho planu
      */
     public PrikazPrezri(HerniPlan hPlan)
     {

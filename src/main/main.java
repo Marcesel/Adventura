@@ -58,7 +58,6 @@ public class Main extends Application {
     private Stage stage;
  
 
-
     
     @Override
     public void start(Stage primaryStage) {

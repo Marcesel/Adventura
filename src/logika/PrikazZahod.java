@@ -22,6 +22,8 @@ public class PrikazZahod implements IPrikaz
 
     /***************************************************************************
      *  Konstruktor ....
+     * @param hPlan nacita instanci aktualniho herniho planu
+     * @param batoh nacita instanci aktualniho batohu
      */
     public PrikazZahod(HerniPlan hPlan, Batoh batoh)
     {

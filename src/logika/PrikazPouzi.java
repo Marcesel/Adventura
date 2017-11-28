@@ -22,7 +22,9 @@ public class PrikazPouzi implements IPrikaz
     //== Konstruktory a tovární metody =============================================
 
     /***************************************************************************
-     *  Konstruktor ....
+     *  Konstruktor ...
+     * @param hPlan nacita instanci herniho planu aktualnej hry
+     * @param batoh nacita instanci batohu aktualnej hry
      */
     public PrikazPouzi(HerniPlan hPlan, Batoh batoh)
     {

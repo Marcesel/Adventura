@@ -22,6 +22,7 @@ public class TextoveRozhrani {
 
     /**
      *  Vytváří hru.
+     * @param hra instance aktualnej hry
      */
     public TextoveRozhrani(IHra hra) {
         this.hra = hra;
@@ -50,7 +51,7 @@ public class TextoveRozhrani {
     /**
      *  Metoda přečte příkaz z příkazového řádku
      *
-     *@return    Vrací přečtený příkaz jako instanci třídy String
+     *@param soubor nacita přečtený příkazy jako instanci třídy String
      */
         public void hrajZeSouboru(String soubor) {
         System.out.println("Nacitam prikazy ze souboru " + soubor);

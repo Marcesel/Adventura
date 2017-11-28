@@ -21,7 +21,12 @@ import main.Main;
 import GUI.Vychody;
 
 /**
- *
+ * Třída MenuLista - třída používa návrhový vzor Observer a implementuje listu s
+ * moznostami.
+ * 
+ * Tato třída vytváří instanci třídy MenuLista, 
+ * ktera obsahuje nekolik funkcionalit na start novej hry, konec hry, napovedu
+ * a moznost o programe.
  * @author xzenj02, Marcel Češelka
  */
 public class MenuLista extends MenuBar{
@@ -29,13 +34,19 @@ public class MenuLista extends MenuBar{
     private IHra hra;
     private Main main;
     private Vychody seznamVychodu;
-    
+    /*
+    * Kontruktor tridy.
+    */    
     public MenuLista(IHra hra, Main main){
         this.hra = hra;
         this.main = main;
         init();
     }
     
+    /*
+    * Inicializace listy. Vytvori boxy s moznostou spustit Novu hru, skoncit hru
+    * zobrazit info o programe a napovedu.    
+    */    
     private void init(){
         
         Menu novySoubor = new Menu("Adventura");

@@ -20,15 +20,27 @@ import main.Main;
 import utils.Observer;
 
 /**
+ * Třída BatohGUI - třída používa návrhový vzor Observer a implementuje grafickú správu batohu.
+ * 
+ * Tato třída vytváří instanci třídy BatohGUI, 
+ * která inicializuje listview pro zobrazení batohua vytvára metody, ktere
+ * s BatohGUI můžou pracovat.
  *
- * @author Marcel
+ * @author    Marcel Češelka
+ * @version   0.00.000
  */
 public class BatohGUI implements Observer{
     private IHra hra;
     ListView<Object> list;
     ObservableList<Object> data;
     private TextArea centralText;
-    
+
+    /**
+     *
+     * @param hra nacita instanci aktualnej hry
+     * @param text nacita instanci textoveho pole pro prikazy
+     */
+
     public BatohGUI(IHra hra, TextArea text) {
        this.hra = hra;
        hra.getHerniPlan().registerObserver(this);
@@ -36,7 +48,9 @@ public class BatohGUI implements Observer{
        
         init();
     }
-    
+    /**
+     *  Aktualizace predmetov v priestore.
+     */
     @Override
     public void update() {
         Map<String, Vec> veci;
@@ -49,7 +63,11 @@ public class BatohGUI implements Observer{
             data.add(obrazok);             
         }               
     }
-
+    /*
+    * Inicializace batohu. Vytvori novy listview a nacita veci, ktore sa v batohu
+    * nachadzaju. Na kliknuti mysou sa dany predmet zahodi z inventaru do aktualneho
+    * priestoru.
+    */
     private void init() {
         list = new ListView<>();
         data = FXCollections.observableArrayList();
@@ -97,9 +115,22 @@ public class BatohGUI implements Observer{
         update();
     }
     
+    /**
+     *
+     * @return vraci instanci listu objektov z batohu
+     */
     public ListView<Object> getList() {
         return list;
-    } 
+    }
+    /*
+    * Aktualizace batohu na pociatocny stav.
+    */
+
+    /**
+     *
+     * @param novaHra nacita instanci nove hry
+     */
+
     public void newGame(IHra novaHra){
         hra.getHerniPlan().removeObserver(this);
         
